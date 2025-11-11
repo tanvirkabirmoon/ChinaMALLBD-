@@ -321,6 +321,7 @@ body {
 .carousel-btn.right { right: 10px; }
 
 /* 📦 Order Section */
+/* 📦 Order Section */
 .order-section {
   padding: 2rem;
   background: rgba(255, 255, 255, 0.1);
@@ -329,7 +330,6 @@ body {
   max-width: 800px;
   margin: 2rem auto;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-  animation: slideFade 1s ease;
 }
 .order-section h2 {
   text-align: center;
@@ -337,6 +337,8 @@ body {
   margin-bottom: 1.5rem;
   color: #0077cc;
 }
+
+/* 🧾 Form Grid */
 .order-form {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -418,6 +420,19 @@ body {
 .clear-cart:hover {
   background: #e60000;
 }
+
+/* 📱 Responsive Form Layout */
+@media (max-width: 768px) {
+  .order-form {
+    grid-template-columns: 1fr;
+  }
+  .order-form textarea,
+  .order-form button,
+  .cart-summary {
+    grid-column: span 1;
+  }
+}
+
 
 /* 🔔 Toast */
 .toast {
