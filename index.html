@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChinaMALLBD</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- 🔥 Hero Section -->
+  <header class="site-header">
+    <div class="logo-container">
+      <img src="China mall Logo-01.png" alt="ChinaMALLBD Logo" />
+    </div>
+  </header>
+
+  <section class="hero-banner">
+    <img src="WhatsApp Image 2025-11-09 at 22.54.40_0ed3e00d.jpg" alt="ChinaMALLBD Promo Banner" />
+  </section>
+
+  <!-- 🛍️ Product Showcase -->
+  <section class="product-showcase">
+    <h2 class="section-title">PRODUCT'S</h2>
+    <div class="product-row">
+      <!-- Smart Ice Maker i5 -->
+      <div class="product-card">
+        <div class="image-carousel">
+          <img src="new 2.jpg" class="carousel-img active" alt="Smart Ice Maker - Front" />
+         <!-- <img src="ice maker 2.jpg" class="carousel-img" alt="Smart Ice Maker - Side" />
+          <img src="smart ice maker 4.png" class="carousel-img" alt="Smart Ice Maker - Usage" />
+          <button class="carousel-btn left" onclick="changeImage(this, -1)">‹</button>
+          <button class="carousel-btn right" onclick="changeImage(this, 1)">›</button>-->
+        </div>
+        <h3>Smart Ice Maker i5</h3>
+        <ul>
+          <li>• Smart Wi-Fi Controlled</li>
+          <li>• 1.3L Capacity</li>
+          <li>• Compact & Energy Efficient</li>
+          <li>• 1-Year Warranty</li>
+        </ul>
+        <p class="price">৳20,000</p>
+        <button onclick="addToCart('Smart Ice Maker', 20000)">Add to Cart</button>
+      </div>
+
+      <!-- HY320 Mini Projector -->
+      <div class="product-card">
+        <div class="image-carousel">
+          <img src="new 1.jpg" class="carousel-img active" alt="Mini Projector - Front" />
+         <!--  <img src="projector 22.webp" class="carousel-img" alt="Mini Projector - Side" />
+          <img src="projrctor.jpeg" class="carousel-img" alt="Mini Projector - Setup" />
+          <button class="carousel-btn left" onclick="changeImage(this, -1)">‹</button>
+          <button class="carousel-btn right" onclick="changeImage(this, 1)">›</button>-->
+        </div>
+        <h3>HY320 Mini Projector</h3>
+        <ul>
+          <li>• Full HD 1080P</li>
+          <li>•Android 11.0</li>
+          <li>•WiFi 6 + Bluetooth 5.0</li>
+          <li>•180° Rotatable Design</li>
+        </ul>
+        <p class="price">৳7,000</p>
+        <button onclick="addToCart('Mini Projector', 7000)">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 📦 Order Form -->
+  <section class="order-section">
+    <h2>🛒 Place Your Order</h2>
+    <form onsubmit="sendToWhatsApp(event)" class="order-form">
+      <input type="text" id="name" placeholder="Customer Name" required />
+      <input type="tel" id="phone" placeholder="Mobile Number" required />
+      <input type="text" id="address" placeholder="Delivery Address" required />
+      <input type="text" id="district" placeholder="District" required onchange="updateCart()" />
+      <input type="text" id="area" placeholder="Area" required />
+      <input type="text" id="house" placeholder="House Number" required />
+
+      <div class="product-group">
+        <label>Smart Ice Maker</label>
+        <input type="number" id="iceQty" min="0" value="0" onchange="updateCart()" />
+      </div>
+      <div class="product-group">
+        <label>Mini Projector</label>
+        <input type="number" id="projectorQty" min="0" value="0" onchange="updateCart()" />
+      </div>
+
+      <input type="text" id="variant" placeholder="Color / Size / Variant (optional)" />
+      <select id="deliveryType">
+        <option value="Home Delivery">Home Delivery</option>
+        <option value="Pickup from Office">Pickup from Office</option>
+      </select>
+      <select id="paymentMethod">
+        <option value="Cash on Delivery">Cash on Delivery</option>
+      </select>
+      <textarea id="note" placeholder="Note (Optional)"></textarea>
+
+      <div class="cart-summary">
+        <h3>🧾 Cart Summary</h3>
+        <ul id="cartItems"><li>No items added yet.</li></ul>
+        <p id="cartTotal">Total Price: ৳0</p>
+        <p id="cartDelivery">Delivery Charge: ৳0</p>
+        <p id="cartGrandTotal">Grand Total: ৳0</p>
+      </div>
+
+      <button type="button" onclick="confirmClearCart()" class="clear-cart">🗑️ Clear Cart</button>
+      <button type="submit">Submit Order</button>
+      <p>We will call to confirm your order before dispatch.</p>
+      <p>Delivery within 2-3 working days.</p>
+    </form>
+  </section>
+
+  <!-- 📞 Footer -->
+  <footer class="site-footer">
+    <div class="footer-address">
+      Office Address — House-7, Road-6, Sector-1, Uttara, Dhaka, 1230
+    </div>
+
+    <div class="social-buttons">
+      <a href="https://www.facebook.com/profile.php?id=61582674020480" target="_blank" class="social-btn facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="https://instagram.com" target="_blank" class="social-btn instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="bdchinamall@gmail.com" class="social-btn email">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </div>
+  </footer>
+
+  <!-- 🔧 Scripts -->
+  <script>
+    function changeImage(button, direction) {
+      const carousel = button.closest('.image-carousel');
+      const images = carousel.querySelectorAll('.carousel-img');
+      const activeImage = carousel.querySelector('.carousel-img.active');
+      let activeIndex = Array.from(images).indexOf(activeImage);
+
+      activeImage.classList.remove('active');
+      let newIndex = (activeIndex + direction + images.length) % images.length;
+      images[newIndex].classList.add('active');
+    }
+  </script>
+
+  <script src="script.js"></script>
+  <div id="toast" class="toast">Cart cleared successfully!</div>
+
+</body>
+</html>
